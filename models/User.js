@@ -1,6 +1,46 @@
 const mongoose = require('mongoose');
 const validator = require("validator")
 
+const GameMainSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String
+    }
+})
+  
+const GameRankSchema = new mongoose.Schema({
+    gamemode: {
+        type: String,
+        required: true
+    },
+    rank: {
+        type: String,
+        required: true
+    }
+})
+
+const UserGameSchema = new mongoose.Schema({
+    game: {
+        type: String,
+        required: true,
+    },
+    username: {
+        type: String
+    },
+    region: {
+        type: String
+    },
+    mains: {
+        type: [GameMainSchema]
+    },
+    ranks: {
+        type: [GameRankSchema]
+    }
+});
+
 const UserSchema = new mongoose.Schema({
     _id: {
         type: String,
@@ -39,45 +79,5 @@ const UserSchema = new mongoose.Schema({
         type: [UserGameSchema]
     }
 });
-
-const UserGameSchema = new mongoose.Schema({
-    game: {
-        type: String,
-        required: true,
-    },
-    username: {
-        type: String
-    },
-    region: {
-        type: String
-    },
-    mains: {
-        type: [GameMainSchema]
-    },
-    ranks: {
-        type: [GameRankSchema]
-    }
-});
-
-const GameMainSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    role: {
-        type: String
-    }
-})
-  
-const GameRankSchema = new mongoose.Schema({
-    gamemode: {
-        type: String,
-        required: true
-    },
-    rank: {
-        type: String,
-        required: true
-    }
-})
 
 module.exports = User = mongoose.model('user', UserSchema);
