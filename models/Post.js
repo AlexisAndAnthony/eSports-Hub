@@ -17,6 +17,10 @@ const PostSchema = new mongoose.Schema({
     post_date: {
       type: Date,
       default: Date.now
+    },
+    poster_id: {
+      type: String,
+      required: true
     }
   });
   
