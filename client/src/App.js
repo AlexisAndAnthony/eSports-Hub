@@ -5,25 +5,33 @@ import {
   Route,
 } from "react-router-dom";
 import LandingPage from './components/LandingPage.js';
+import SignInPage from './components/SignInPage.js';
+import PortfolioList from './components/PortfolioList.js';
+import RecruitmentPage from './components/RecruitmentPage.js';
+import GroupList from './components/GroupList.js';
+import TournamentList from './components/TournamentList.js';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
-          <LandingPage />
+        <Route path="/signin">
+          <SignInPage />
         </Route>
         <Route path="/portfolios">
-          {}
+          <PortfolioList />
         </Route>
         <Route path="/recruitment">
-          {}
+          <RecruitmentPage />
         </Route>
         <Route path="/groups">
-          {}
+          <GroupList />
         </Route>
         <Route path="/tournaments">
-          {}
+          <TournamentList />
+        </Route>
+        <Route path="/">
+          <LandingPage />
         </Route>
       </Switch>
     </Router>
