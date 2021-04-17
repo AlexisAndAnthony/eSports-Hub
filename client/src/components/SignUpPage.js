@@ -11,22 +11,19 @@ function SignUpPage(props) {
   const [displayError, setDisplayError] = useState(false);
 
   const handleSuccess = async (googleData) => {
-    console.log('Successfully logged in with Google');
-    axios({
-      method: 'post',
-      url: 'http://localhost:8080/api/users/auth',
+    await axios.post('http://localhost:8080/api/users/auth', {
       data: {
         token: googleData.tokenId
       }
-    }) 
-    .then((response) => {
-      // store returned user
+    })
+    .then(function (response) {
       props.updateLogin(true);
       setDisplayError(false);
       console.log('Response: ' + response);
-    }, (error) => {
+    })
+    .catch(function (error) {
       setDisplayError(true);
-      console.log(error);
+      console.log('Error: ' + error);
     });
   }
 

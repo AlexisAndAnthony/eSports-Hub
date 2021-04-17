@@ -14,7 +14,6 @@ async function verify(token) {
         audience: process.env.CLIENT_ID
     });
 
-    console.log('Ticket: ' + ticket);
     return ticket;
 }
 
@@ -22,13 +21,12 @@ async function verify(token) {
 // @description Authenticate user
 // @access Public
 router.post('/auth', async (req, res) => {
-    console.log(req);
     console.log('Attempting to authenticate...');
-    verify(req.body.token)
+    verify(req.body.data.token)
         .then((ticket) => {
             const ticketPayload = ticket['payload'];
             // req.session.userId = null; // Keep track of user session
-            res.status(200);
+            res.status(200).json({ msg: 'Authenticated successfully' });
         })
         .catch(console.error);
 });

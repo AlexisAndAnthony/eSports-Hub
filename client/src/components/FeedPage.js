@@ -3,6 +3,7 @@ import '../styles/Feed.css';
 import { useState } from 'react';
 import ReactRoundedImage from "react-rounded-image";
 import Header from './Header.js';
+import axios from 'axios';
 
 import Pic from '../resources/DefaultProfilePic.png'; // Remove later
 
@@ -69,6 +70,14 @@ function getPosts() {
       post_date: "April 7 2021 8:46AM"
     }
   ];
+
+  axios.get('http://localhost:8080/api/users/auth')
+    .then(() => {
+
+    })
+    .catch((error) => {
+
+    });
 }
 
 function Post(props) {
