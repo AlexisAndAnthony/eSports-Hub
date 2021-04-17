@@ -1,7 +1,32 @@
 const express = require('express');
 const router = express.Router();
 
+const { OAuth2Client } = require('google-auth-library');
+const { token } = require('morgan');
+const client = new OAuth2Client(process.env.CLIENT_ID);
+
 const User = require('../../models/User');
+
+// @route POST api/users/auth
+// @description Authenticate user
+// @access Public
+router.post('/auth', (req, res) => {
+    async function verify() {
+        const ticket = await client.verifyIdToken({
+            idToken: req.body.token,
+            audience: process.env.CLIENT_ID
+        });
+
+        return ticket;
+    }
+
+    const ticket = verify()
+        .then(() => {
+            const ticketPayload = ticket.getPayload();
+            res.status(200);
+        })
+        .catch(console.error);
+});
 
 // @route GET api/users
 // @description Get all users
