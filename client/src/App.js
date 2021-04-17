@@ -20,7 +20,10 @@ function App() {
     <Router>
       <Switch>
         <Route path="/signup">
-          <SignUpPage isSignedIn={isSignedIn} />
+          <SignUpPage 
+            isSignedIn={isSignedIn}
+            updateLogin={(isSignedIn) => setIsSignedIn(isSignedIn)}
+          />
         </Route>
         <Route path="/feed">
           <FeedPage isSignedIn={isSignedIn} />

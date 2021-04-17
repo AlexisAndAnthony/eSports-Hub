@@ -7,7 +7,7 @@ import * as data from '../config/default';
 const OAuthClientID = data['OAuthClientID'];
 
 function SignUpPage(props) {
-  const handleLogin = async googleData => {
+  const handleSuccess = async googleData => {
     axios({
       method: 'post',
       url: '/api/users/auth',
@@ -17,10 +17,15 @@ function SignUpPage(props) {
     }) 
     .then((response) => {
       // store returned user
+      props.updateLogin(true);
       console.log(response);
     }, (error) => {
       console.log(error);
     });
+  }
+
+  const handleFailure = () => {
+    console.log('Error occurred when logging in');
   }
 
   return (
@@ -30,13 +35,15 @@ function SignUpPage(props) {
         <h3>New to eSports Hub?</h3>
         <p>You can create an account in just a few quick steps.</p>
         <div>
-          <GoogleLogin
-            clientId={OAuthClientID}
-            buttonText="Login with Google"
-            onSuccess={handleLogin}
-            onFailure={handleLogin}
-            cookiePolicy={'single_host_origin'}
-          />
+          {!props.isSignedIn &&
+            <GoogleLogin
+              clientId={OAuthClientID}
+              buttonText="Login with Google"
+              onSuccess={handleSuccess}
+              onFailure={handleFailure}
+              cookiePolicy={'single_host_origin'}
+            />
+          }
         </div>
       </div>
     </div>
