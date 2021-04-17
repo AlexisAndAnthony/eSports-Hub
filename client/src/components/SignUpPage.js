@@ -22,6 +22,7 @@ function SignUpPage(props) {
       console.log(error);
     });
   }
+
   return (
     <div className="App">
       <Header isSignedIn={props.isSignedIn} />
