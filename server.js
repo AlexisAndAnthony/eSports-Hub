@@ -12,7 +12,6 @@ const users = require('./routes/api/users');
 const posts = require('./routes/api/posts');
 
 
-
 // Step 2
 // Connect Database
 // connectDB();
