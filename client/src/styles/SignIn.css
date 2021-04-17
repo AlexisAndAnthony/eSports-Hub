@@ -1,0 +1,27 @@
+.sign-in-box {
+    background-color: #404547;
+    color: #DADADA;
+    margin: 10px;
+    padding: 5px 10px 10px 10px;
+}
+
+.sign-in-prompt {
+    margin: 10px;
+    font-size: 16px;
+}
+
+.sign-in-prompt p {
+    margin: 0px
+}
+
+.forgot-prompt {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+h3 {
+    font-size: 32px;
+    color: #D4B300;
+    margin-bottom: 0;
+}

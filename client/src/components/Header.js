@@ -27,9 +27,9 @@ function Header() {
   
   function SignInButton() {
     return (
-      <Link to="/signin">
+      <Link to="/signup">
         <button className="sign-in-button">
-            SIGN IN
+            SIGN UP
         </button>
       </Link>
     )

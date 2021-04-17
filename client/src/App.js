@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import LandingPage from './components/LandingPage.js';
-import SignInPage from './components/SignInPage.js';
+import SignUpPage from './components/SignUpPage.js';
 import PortfolioList from './components/PortfolioList.js';
 import RecruitmentPage from './components/RecruitmentPage.js';
 import GroupList from './components/GroupList.js';
@@ -15,8 +15,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/signin">
-          <SignInPage />
+        <Route path="/signup">
+          <SignUpPage />
         </Route>
         <Route path="/portfolios">
           <PortfolioList />
