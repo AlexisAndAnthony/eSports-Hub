@@ -3,20 +3,27 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
+// const connectDB = require('./config/db');
 
 const app = express();
 const PORT = process.env.PORT || 8080; // Step 1
 
-const routes = require('./routes/api');
+const users = require('./routes/api/users');
+const posts = require('./routes/api/posts');
+
+
 
 // Step 2
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_youtube', {
+// Connect Database
+// connectDB();
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/local', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose is connected!!!!');
+    console.log('Mongoose is connected');
 });
 
 // Data parsing
@@ -32,7 +39,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // HTTP request logger
 app.use(morgan('tiny'));
-app.use('/api', routes);
+app.use('/api/users', users);
+app.use('/api/posts', posts);
 
 
 
