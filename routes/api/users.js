@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // @route GET api/users/:id
 // @description Get user by user id
 // @access Public
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     User.findById(req.params.id)
         .then(users => res.json(users))
         .catch(err => res.status(404).json({ error: 'No user found' }));
