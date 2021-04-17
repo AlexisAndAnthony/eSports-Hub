@@ -1,5 +1,6 @@
 import '../styles/App.css';
 import { Link, useLocation } from "react-router-dom";
+import React from 'react';
 
 function Header(props) {
   const location = useLocation();
@@ -21,41 +22,11 @@ function NavBar(props) {
   return (
     <div className="nav-bar">
       <div className="nav-links">
-        <Link 
-          to="/feed" 
-          style={{ textDecoration: 'none' }}
-          id={`${props.selectedLink === "/feed" ? "selected-link" : ""}`}
-        >
-          <p>FEED</p>
-        </Link>
-        <Link 
-          to="/portfolios" 
-          style={{ textDecoration: 'none' }}
-          id={props.selectedLink === "/portfolios" ? "selected-link" : ""}
-        >
-          <p>PORTFOLIOS</p>
-        </Link>
-        <Link 
-          to="/recruitment" 
-          style={{ textDecoration: 'none' }}
-          id={props.selectedLink === "/recruitment" ? "selected-link" : ""}
-        >
-          <p>ESPORTS RECRUITMENT</p>
-        </Link>
-        <Link 
-          to="/groups" 
-          style={{ textDecoration: 'none' }}
-          id={props.selectedLink === "/groups" ? "selected-link" : ""}
-        >
-          <p>GROUPS & SCRIMS</p>
-        </Link>
-        <Link 
-          to="/tournaments" 
-          style={{ textDecoration: 'none' }}
-          id={props.selectedLink === "/tournaments" ? "selected-link" : ""}
-        >
-          <p>TOURNAMENTS</p>
-        </Link>
+        <NavLink to="/feed" label="FEED" />
+        <NavLink to="/portfolios" label="PORTFOLIOS" />
+        <NavLink to="/recruitment" label="ESPORTS RECRUITMENT" />
+        <NavLink to="/groups" label="GROUPS & SCRIMS" />
+        <NavLink to="/tournaments" label="TOURNAMENTS" />
       </div>
       {!props.isSignedIn
         ? <SignInButton />
@@ -63,6 +34,16 @@ function NavBar(props) {
       }
     </div> 
   )
+}
+
+function NavLink(props) {
+  <Link 
+    to={props.to}
+    style={{ textDecoration: 'none' }}
+    id={props.selectedLink === props.to ? "selected-link" : <React.Fragment />}
+  >
+    <p>{props.label}</p>
+  </Link>
 }
 
 function SignInButton() {
