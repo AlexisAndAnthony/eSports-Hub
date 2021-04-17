@@ -22,11 +22,11 @@ function NavBar(props) {
   return (
     <div className="nav-bar">
       <div className="nav-links">
-        <NavLink to="/feed" label="FEED" />
-        <NavLink to="/portfolios" label="PORTFOLIOS" />
-        <NavLink to="/recruitment" label="ESPORTS RECRUITMENT" />
-        <NavLink to="/groups" label="GROUPS & SCRIMS" />
-        <NavLink to="/tournaments" label="TOURNAMENTS" />
+        <NavLink to="/feed" selectedLink={props.selectedLink} label="FEED" />
+        <NavLink to="/portfolios" selectedLink={props.selectedLink} label="PORTFOLIOS" />
+        <NavLink to="/recruitment" selectedLink={props.selectedLink} label="ESPORTS RECRUITMENT" />
+        <NavLink to="/groups" selectedLink={props.selectedLink} label="GROUPS & SCRIMS" />
+        <NavLink to="/tournaments" selectedLink={props.selectedLink} label="TOURNAMENTS" />
       </div>
       {!props.isSignedIn
         ? <SignInButton />
