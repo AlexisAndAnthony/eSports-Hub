@@ -51,7 +51,11 @@
   width: 100%;
 }
 
-.nav-bar p {
+#selected-link {
+  color: #D4B300;
+}
+
+a {
   color: #DADADA;
 }
 
