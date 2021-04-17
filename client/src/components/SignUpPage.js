@@ -1,5 +1,6 @@
 import '../styles/App.css';
 import '../styles/SignIn.css';
+import { useState } from 'react';
 import Header from './Header.js';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
@@ -7,6 +8,8 @@ import * as data from '../config/default';
 const OAuthClientID = data['OAuthClientID'];
 
 function SignUpPage(props) {
+  const [displayError, setDisplayError] = useState(false);
+
   const handleSuccess = async googleData => {
     axios({
       method: 'post',
@@ -18,8 +21,10 @@ function SignUpPage(props) {
     .then((response) => {
       // store returned user
       props.updateLogin(true);
+      setDisplayError(false);
       console.log(response);
     }, (error) => {
+      setDisplayError(true);
       console.log(error);
     });
   }
@@ -43,6 +48,12 @@ function SignUpPage(props) {
               onFailure={handleFailure}
               cookiePolicy={'single_host_origin'}
             />
+          }
+          {displayError &&
+            <p className="error-msg">
+              Sorry, an error occurred when attempting to login with Google.
+              Please try again.
+            </p>
           }
         </div>
       </div>
