@@ -7,22 +7,27 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const User = require('../../models/User');
 
+async function verify(token) {
+    console.log('Verifying...');
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: process.env.CLIENT_ID
+    });
+
+    console.log('Ticket: ' + ticket);
+    return ticket;
+}
+
 // @route POST api/users/auth
 // @description Authenticate user
 // @access Public
-router.post('/auth', (req, res) => {
-    async function verify() {
-        const ticket = await client.verifyIdToken({
-            idToken: req.body.token,
-            audience: process.env.CLIENT_ID
-        });
-
-        return ticket;
-    }
-
-    const ticket = verify()
-        .then(() => {
-            const ticketPayload = ticket.getPayload();
+router.post('/auth', async (req, res) => {
+    console.log(req);
+    console.log('Attempting to authenticate...');
+    verify(req.body.token)
+        .then((ticket) => {
+            const ticketPayload = ticket['payload'];
+            // req.session.userId = null; // Keep track of user session
             res.status(200);
         })
         .catch(console.error);

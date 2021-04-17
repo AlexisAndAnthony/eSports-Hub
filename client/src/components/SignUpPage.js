@@ -10,10 +10,11 @@ const OAuthClientID = data['OAuthClientID'];
 function SignUpPage(props) {
   const [displayError, setDisplayError] = useState(false);
 
-  const handleSuccess = async googleData => {
+  const handleSuccess = async (googleData) => {
+    console.log('Successfully logged in with Google');
     axios({
       method: 'post',
-      url: '/api/users/auth',
+      url: 'http://localhost:8080/api/users/auth',
       data: {
         token: googleData.tokenId
       }
@@ -22,7 +23,7 @@ function SignUpPage(props) {
       // store returned user
       props.updateLogin(true);
       setDisplayError(false);
-      console.log(response);
+      console.log('Response: ' + response);
     }, (error) => {
       setDisplayError(true);
       console.log(error);

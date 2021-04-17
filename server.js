@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
+
 // const connectDB = require('./config/db');
 
 const app = express();
@@ -35,14 +37,17 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
 
+var corsOptions = {
+    'origin': '*',
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 
 // HTTP request logger
 app.use(morgan('tiny'));
 app.use('/api/users', users);
 app.use('/api/posts', posts);
-
-
-
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
 

@@ -15,6 +15,7 @@ import TournamentPage from './components/TournamentPage.js';
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  console.log(isSignedIn);
 
   return (
     <Router>
