@@ -37,13 +37,15 @@ function NavBar(props) {
 }
 
 function NavLink(props) {
-  <Link 
-    to={props.to}
-    style={{ textDecoration: 'none' }}
-    id={props.selectedLink === props.to ? "selected-link" : <React.Fragment />}
-  >
-    <p>{props.label}</p>
-  </Link>
+  return (
+    <Link 
+      to={props.to}
+      style={{ textDecoration: 'none' }}
+      id={props.selectedLink === props.to ? "selected-link" : <React.Fragment />}
+    >
+      <p>{props.label}</p>
+    </Link>
+  )
 }
 
 function SignInButton() {
