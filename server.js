@@ -7,7 +7,9 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080; // Step 1
 
-const routes = require('./routes/api');
+const users = require('./routes/api/users');
+const posts = require('./routes/api/posts');
+
 
 // Step 2
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_youtube', {
@@ -32,7 +34,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // HTTP request logger
 app.use(morgan('tiny'));
-app.use('/api', routes);
+app.use('/api/users', users);
+app.use('/api/posts', posts);
 
 
 
