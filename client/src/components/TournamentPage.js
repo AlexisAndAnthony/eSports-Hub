@@ -1,12 +1,12 @@
 import '../styles/App.css';
 import Header from './Header.js';
 
-function TournamentList() {
+function TournamentPage(props) {
   return (
     <div className="App">
-      <Header /> 
+      <Header isSignedIn={props.isSignedIn} /> 
     </div>
   );
 }
 
-export default TournamentList;
+export default TournamentPage;

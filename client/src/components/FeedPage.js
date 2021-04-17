@@ -1,12 +1,26 @@
 import '../styles/App.css';
 import '../styles/Feed.css';
+import { useState } from 'react';
 import Header from './Header.js';
 
-function FeedPage() {
+function FeedPage(props) {
   return (
     <div className="App">
-      <Header /> 
+      <Header isSignedIn={props.isSignedIn} /> 
       <div className="feed-display">
+        <div className="new-post-display">
+          {props.isSignedIn
+          ? (
+            <div>
+              <p>Have something to say?</p>
+              <div className="input-row">
+                <TextInput />
+              </div>
+            </div>
+          ) : (
+            <p>Sign In to make a post!</p>
+          )}
+        </div>
         {getPosts().map((post) => (
           <Post 
             profile_picture_url={post.profile_picture_url}
@@ -17,6 +31,22 @@ function FeedPage() {
         ))}
       </div>
     </div>
+  );
+}
+
+function TextInput() {
+  const [value, setValue] = useState();
+
+  return (
+    <form className="input-row">
+      <label>
+        <textarea 
+          value={value}
+          onChange={(event) => setValue(event.target.value)} 
+        />
+      </label>
+      <input className="post-button" type="submit" value="Post"/>
+    </form>
   );
 }
 

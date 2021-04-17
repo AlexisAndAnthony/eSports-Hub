@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
     return (
       <header className="header">
         <div className="title-group">
@@ -9,13 +9,13 @@ function Header() {
           <p>Your one-stop-shop for eSports connections.</p>
         </div>
         <div className="nav-bar">
-          <NavBar />
+          <NavBar isSignedIn={props.isSignedIn}/>
         </div>
       </header>
     )
   }
 
-  function NavBar() {
+  function NavBar(props) {
     return (
       <div className="nav-bar">
         <div className="nav-links">
@@ -25,7 +25,10 @@ function Header() {
           <Link to="/groups" style={{ textDecoration: 'none' }}><p>GROUPS & SCRIMS</p></Link>
           <Link to="/tournaments" style={{ textDecoration: 'none' }}><p>TOURNAMENTS</p></Link>
         </div>
-        <SignInButton />
+        {!props.isSignedIn
+          ? <SignInButton />
+          : <p></p>
+        }
       </div> 
     )
   }

@@ -1,10 +1,10 @@
 import '../styles/App.css';
 import Header from './Header.js';
 
-function GroupPage() {
+function GroupPage(props) {
   return (
     <div className="App">
-      <Header /> 
+      <Header isSignedIn={props.isSignedIn} /> 
     </div>
   );
 }

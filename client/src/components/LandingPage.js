@@ -5,10 +5,10 @@ import leagueoflegends_logo from "../resources/LeagueofLegends_logo.png";
 import valorant_logo from "../resources/Valorant_logo.png";
 import overwatch_logo from "../resources/Overwatch_logo.png";
 
-function LandingPage() {
+function LandingPage(props) {
     return (
       <div className="App">
-          <Header />
+          <Header isSignedIn={props.isSignedIn} />
           <div className="body">
             <div className="left-column">
               <div className="blurb">

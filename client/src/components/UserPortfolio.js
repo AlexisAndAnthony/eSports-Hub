@@ -4,7 +4,7 @@ import Header from './Header.js';
 function UserPortfolio(props) {
   return (
     <div className="App">
-      <Header /> 
+      <Header isSignedIn={props.isSignedIn} /> 
     </div>
   );
 }

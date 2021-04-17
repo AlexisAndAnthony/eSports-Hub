@@ -8,6 +8,15 @@
     width: 90vw;
 }
 
+.new-post-display {
+    display: flex;
+    flex-direction: column;
+    color: #DADADA;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
 .post {
     background-color: #2C2C30;
     color: #C4C4C4;
@@ -18,4 +27,27 @@
 .post-user-info {
     display: flex;
     flex-direction: row;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+textarea {
+    resize: none;
+    border: #2C2C30;
+    background-color: #C4C4C4;
+    color: #2C2C30;
+    outline: none;
+}
+
+.post-button {
+    background-color: #D4B300;
+    color:  #DADADA;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
 }

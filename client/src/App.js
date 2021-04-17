@@ -1,4 +1,5 @@
 import './styles/App.css';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,29 +14,31 @@ import GroupPage from './components/GroupPage.js';
 import TournamentPage from './components/TournamentPage.js';
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   return (
     <Router>
       <Switch>
         <Route path="/signup">
-          <SignUpPage />
+          <SignUpPage isSignedIn={isSignedIn} />
         </Route>
         <Route path="/feed">
-          <FeedPage />
+          <FeedPage isSignedIn={isSignedIn} />
         </Route>
         <Route path="/portfolios">
-          <PortfolioPage />
+          <PortfolioPage isSignedIn={isSignedIn} />
         </Route>
         <Route path="/recruitment">
-          <RecruitmentPage />
+          <RecruitmentPage isSignedIn={isSignedIn} />
         </Route>
         <Route path="/groups">
-          <GroupPage />
+          <GroupPage isSignedIn={isSignedIn} />
         </Route>
         <Route path="/tournaments">
-          <TournamentPage />
+          <TournamentPage isSignedIn={isSignedIn} />
         </Route>
         <Route path="/">
-          <LandingPage />
+          <LandingPage isSignedIn={isSignedIn} />
         </Route>
       </Switch>
     </Router>
