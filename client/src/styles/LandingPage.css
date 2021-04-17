@@ -56,10 +56,26 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
   background-color: #404547;
   color: #DADADA;
 }
 
 .games-box h3 {
   color: #D4B300;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: 100px;
+}
+
+.game-logo {
+  height: 50px;
+  width: 50px;
+  padding-right: 10px;
 }

@@ -1,5 +1,5 @@
 import '../styles/App.css';
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
 function Header() {
     return (

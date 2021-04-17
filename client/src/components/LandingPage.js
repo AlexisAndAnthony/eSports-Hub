@@ -1,6 +1,9 @@
 import '../styles/App.css';
 import '../styles/LandingPage.css';
 import Header from "./Header.js";
+import leagueoflegends_logo from "../resources/LeagueofLegends_logo.png";
+import valorant_logo from "../resources/Valorant_logo.png";
+import overwatch_logo from "../resources/Overwatch_logo.png";
 
 function LandingPage() {
     return (
@@ -27,9 +30,18 @@ function LandingPage() {
     return (
       <div className="games-box">
         <h3>SUPPORTED GAMES</h3>
-        <p>League of Legends</p>
-        <p>VALORANT</p>
-        <p>Overwatch</p>
+        <div className="game">
+          <img src={leagueoflegends_logo} className="game-logo" alt=""/>
+          <p>League of Legends</p>
+        </div>
+        <div className="game">
+          <img src={valorant_logo} className="game-logo" alt=""/>
+          <p>VALORANT</p>
+        </div>
+        <div className="game">
+          <img src={overwatch_logo} className="game-logo" alt=""/>
+          <p>Overwatch</p>
+        </div>
         <p>...with many more on the way!</p>
       </div>
     )
