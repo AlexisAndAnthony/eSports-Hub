@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header(props) {
   const location = useLocation();
-  console.log(location);
-  console.log(location['pathname']);
 
   return (
     <header className="header">
@@ -20,44 +18,41 @@ function Header(props) {
 }
 
 function NavBar(props) {
-  console.log(props.selectedLink);
-  console.log(props.selectedLink == "/feed");
-
   return (
     <div className="nav-bar">
       <div className="nav-links">
         <Link 
           to="/feed" 
           style={{ textDecoration: 'none' }}
-          id={`${props.selectedLink == "/feed" ? "selected-link" : ""}`}
+          id={`${props.selectedLink === "/feed" ? "selected-link" : ""}`}
         >
           <p>FEED</p>
         </Link>
         <Link 
           to="/portfolios" 
           style={{ textDecoration: 'none' }}
-          id={props.selectedLink == "/portfolios" ? "selected-link" : ""}
+          id={props.selectedLink === "/portfolios" ? "selected-link" : ""}
         >
           <p>PORTFOLIOS</p>
         </Link>
         <Link 
           to="/recruitment" 
           style={{ textDecoration: 'none' }}
-          id={props.selectedLink == "/recruitment" ? "selected-link" : ""}
+          id={props.selectedLink === "/recruitment" ? "selected-link" : ""}
         >
           <p>ESPORTS RECRUITMENT</p>
         </Link>
         <Link 
           to="/groups" 
           style={{ textDecoration: 'none' }}
-          id={props.selectedLink == "/groups" ? "selected-link" : ""}
+          id={props.selectedLink === "/groups" ? "selected-link" : ""}
         >
           <p>GROUPS & SCRIMS</p>
         </Link>
         <Link 
           to="/tournaments" 
           style={{ textDecoration: 'none' }}
-          id={props.selectedLink == "/tournaments" ? "selected-link" : ""}
+          id={props.selectedLink === "/tournaments" ? "selected-link" : ""}
         >
           <p>TOURNAMENTS</p>
         </Link>
@@ -74,7 +69,7 @@ function SignInButton() {
   return (
     <Link to="/signup">
       <button className="sign-in-button">
-          SIGN UP
+        SIGN UP
       </button>
     </Link>
   )
