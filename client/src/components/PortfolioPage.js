@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import Header from './Header.js';
 
-function PortfolioList() {
+function PortfolioPage() {
   return (
     <div className="App">
       <Header /> 
@@ -9,4 +9,4 @@ function PortfolioList() {
   );
 }
 
-export default PortfolioList;
+export default PortfolioPage;

@@ -6,10 +6,11 @@ import {
 } from "react-router-dom";
 import LandingPage from './components/LandingPage.js';
 import SignUpPage from './components/SignUpPage.js';
-import PortfolioList from './components/PortfolioList.js';
+import FeedPage from './components/FeedPage.js';
+import PortfolioPage from './components/PortfolioPage.js';
 import RecruitmentPage from './components/RecruitmentPage.js';
-import GroupList from './components/GroupList.js';
-import TournamentList from './components/TournamentList.js';
+import GroupPage from './components/GroupPage.js';
+import TournamentPage from './components/TournamentPage.js';
 
 function App() {
   return (
@@ -18,17 +19,20 @@ function App() {
         <Route path="/signup">
           <SignUpPage />
         </Route>
+        <Route path="/feed">
+          <FeedPage />
+        </Route>
         <Route path="/portfolios">
-          <PortfolioList />
+          <PortfolioPage />
         </Route>
         <Route path="/recruitment">
           <RecruitmentPage />
         </Route>
         <Route path="/groups">
-          <GroupList />
+          <GroupPage />
         </Route>
         <Route path="/tournaments">
-          <TournamentList />
+          <TournamentPage />
         </Route>
         <Route path="/">
           <LandingPage />

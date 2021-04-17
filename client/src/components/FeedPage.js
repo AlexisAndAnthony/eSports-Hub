@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import Header from './Header.js';
 
-function GroupList() {
+function FeedPage() {
   return (
     <div className="App">
       <Header /> 
@@ -9,4 +9,4 @@ function GroupList() {
   );
 }
 
-export default GroupList;
+export default FeedPage;
