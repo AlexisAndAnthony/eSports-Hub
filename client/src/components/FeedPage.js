@@ -1,7 +1,10 @@
 import '../styles/App.css';
 import '../styles/Feed.css';
 import { useState } from 'react';
+import ReactRoundedImage from "react-rounded-image";
 import Header from './Header.js';
+
+import Pic from '../resources/DefaultProfilePic.png'; // Remove later
 
 function FeedPage(props) {
   return (
@@ -60,7 +63,7 @@ function getPosts() {
       post_date: "April 7 2021 8:45AM"
     },
     {
-      profile_picture_url: "",
+      profile_picture_url: "../resources/DefaultProfilePic.png",
       display_name: "TestUser",
       text_content: "This is my second post!",
       post_date: "April 7 2021 8:46AM"
@@ -71,12 +74,20 @@ function getPosts() {
 function Post(props) {
   return (
     <div className="post">
-      <div className="post-user-info">
-        <img src={props.profile_picture_url} alt=""/>
-        <p>{props.display_name}</p>
+      <div className="post-left-column">
+        <div className="post-user-info">
+          <ReactRoundedImage 
+            image={/*props.profile_picture_url*/ Pic} // Fix later
+            imageWidth="50"
+            imageHeight="50"
+          />
+          <p>{props.display_name}</p>
+        </div>
+        <p className="date-display">{props.post_date}</p>
       </div>
-      <p>{props.text_content}</p>
-      <p>{props.post_date}</p>
+      <div className="post-text">
+        <p>{props.text_content}</p>
+      </div>
     </div>
   )
 }
