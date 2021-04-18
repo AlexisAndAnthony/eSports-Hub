@@ -8,7 +8,7 @@ const Post = require('../../models/Post');
 // @access Public
 router.get('/', (req, res) => {
     Post.find()
-        .then(users => res.json(users))
+        .then(posts => res.json(posts))
         .catch(err => res.status(404).json({ error: 'No posts found' }));
 });
 
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 // @access Public
 router.get('/:id', (req, res) => {
     Post.findById(req.params.id)
-        .then(users => res.json(users))
+        .then(posts => res.json(posts))
         .catch(err => res.status(404).json({ error: 'No post found' }));
 })
 
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 // @route DELETE api/users/:id
 router.delete('/:id', (req, res) => {
     Post.findByIdAndRemove(req.params.id, req.body)
-        .then(user => res.json({ msg: 'Post deleted successfully' }))
+        .then(post => res.json({ msg: 'Post deleted successfully' }))
         .catch(err => res.status(404).json({ error: 'Post not found' }));
 })
 
