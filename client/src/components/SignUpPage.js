@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import '../styles/SignIn.css';
 import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Header from './Header.js';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
@@ -10,26 +11,18 @@ const OAuthClientID = data['OAuthClientID'];
 
 function SignUpPage(props) {
   const [displayError, setDisplayError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const handleSuccess = async (googleData) => {
     console.log('Attempting authentication...');
 
-    let auth_res = await account.authenticate(googleData, props.updateLogin, setDisplayError, props.isSignedIn);
+    let auth_res = await account.authenticate(googleData, props.updateLogin, setDisplayError, setRedirect, props.isSignedIn);
     
     if (auth_res['status'] == 200){
       console.log('Inserting data', auth_res['data']['payload']);
       await account.createAccount(googleData.googleId, auth_res['data']['payload']['email']);
     }
-
-      // .then((res) => {
-      //   console.log('Inserting data', res);
-      //   account.createAccount(googleData.googleId, res['email']);
-      //   }
-      // )
-      // .catch((error) => {
-      //   console.log('Error using ticket from authentication' , error);
-      //   }
-      // );
+    
   }
 
   const handleFailure = () => {
@@ -38,6 +31,7 @@ function SignUpPage(props) {
 
   return (
     <div className="App">
+      {redirect && <Redirect to="/setup" />}
       <Header isSignedIn={props.isSignedIn} />
       <div className="sign-in-box">
         <h3>New to eSports Hub?</h3>

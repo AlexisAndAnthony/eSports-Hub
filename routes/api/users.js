@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const { OAuth2Client } = require('google-auth-library');
-const { token } = require('morgan');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 const User = require('../../models/User');

@@ -9,6 +9,7 @@ export async function authenticate(googleData, updateLogin, setDisplayError, isS
         .then(function (response) {
             updateLogin(true);
             setDisplayError(false);
+            setRedirect(true);
             console.log('Response: ' , response);
             // ticket = response['data']['payload'];
             // console.log('email: ' + ticket['email'])
