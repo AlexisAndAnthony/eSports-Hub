@@ -7,6 +7,7 @@ function AccountSetUpPage(props) {
   const [stepNum, setStepNum] = useState(0);
   const [tagList, setTagList] = useState([]);
   const [gameList, setGameList] = useState([]);
+  const [allowContinue, setAllowContinue] = useState(false);
 
   const stepComponents = [
     <TagChecklist handleCheckboxChange={updateTags} />,
@@ -15,24 +16,60 @@ function AccountSetUpPage(props) {
 
   // Stub, logic for what to do if a certain checkbox has been checked
   // Probably change label in args here to something easier to parse
-  function updateTags(tagId) {
-    setTagList(tagList.concat([tagId]));
+  function updateTags(tagId, isChecked) {
+    if (isChecked) {
+      setTagList(tagList.concat([tagId]));
+      setAllowContinue(true);
+    } else {
+      var index = tagList.indexOf(tagId);
+      setTagList(tagList.splice(index, 1));
+      if (tagList.length === 0) {
+        setAllowContinue(false);
+      }
+    }
   }
 
-  function updateGames(gameId) {
-    setGameList(gameList.concat([gameId]));
+  function updateGames(gameId, isChecked) {
+    if (isChecked) {
+      setGameList(gameList.concat([gameId]));
+      setAllowContinue(true);
+    } else {
+      var index = gameList.indexOf(gameId);
+      setTagList(gameList.splice(index, 1));
+      if (gameList.length === 0) {
+        setAllowContinue(false);
+      }
+    }
   }
 
   function finalizeTags() {
-    return;
+    console.log('Finalizing tag selections...');
+    setAllowContinue(false);
+    tagList.forEach((tag) => {
+      return;
+    });
   }
 
   function finalizeGames() {
+    console.log('Finalizing game selections...');
+    setAllowContinue(false);
     gameList.forEach((game) => {
       stepComponents.push(
         <GameQuestions />
       );
-    })
+    });
+  }
+
+  var onButtonClick = () => {};
+  switch(stepNum) {
+    case 0:
+      onButtonClick = () => finalizeTags();
+      break;
+    case 1:
+      onButtonClick = () => finalizeGames();
+      break;
+    default:
+      break;
   }
 
   return (
@@ -44,7 +81,8 @@ function AccountSetUpPage(props) {
               stepComponents={stepComponents}
               stepNum={stepNum}
               setStepNum={setStepNum}
-              onGamesFinish={finalizeGames}
+              allowContinue={allowContinue}
+              onButtonClick={onButtonClick}
             />
           : <FinishedScreen />
         }
@@ -66,20 +104,25 @@ function NextStep(props) {
           {(stepNum < stepComponents.length - 1) && 
             <ContinueButton label="Next" {...props} />}
           {(stepNum === stepComponents.length - 1) && 
-            <button onClick={() => setStepNum(stepNum + 1)}>Finish</button>}
+            <ContinueButton label="Finish" {...props} />}
           {(stepNum < stepComponents.length) && 
-            <ContinueButton label="Skip" {...props} />}
+            <ContinueButton label="Skip" {...props} allowContinue={true}/>}
         </div>
     </div>
   );
 }
 
 function ContinueButton(props) {
+  console.log('Allow continue: ', props.allowContinue);
+  var bg = !props.allowContinue ? "#8c8b82" : "#D4B300";
   return (
     <button 
+      disabled={!props.allowContinue}
       onClick={() => {
         props.setStepNum(props.stepNum + 1);
+        props.onButtonClick();
       }}
+      style={{ backgroundColor: bg }}
     >
       {props.label}
     </button>
@@ -168,8 +211,9 @@ function Checkbox(props) {
   const [isChecked, setIsChecked] = useState(false);
 
   function toggleCheckbox() {
-    setIsChecked(!isChecked);
-    props.handleCheckboxChange(props.boxId);
+    var checked = isChecked;
+    setIsChecked(!checked);
+    props.handleCheckboxChange(props.boxId, !checked);
   }
 
   return (

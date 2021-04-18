@@ -42,7 +42,7 @@ function SignUpPage(props) {
               buttonText="Login with Google"
               onSuccess={handleSuccess}
               onFailure={handleFailure}
-              isSignedIn={true}
+              // isSignedIn={true}
               cookiePolicy={'single_host_origin'}
             />
           }

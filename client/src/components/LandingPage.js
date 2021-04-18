@@ -4,6 +4,9 @@ import Header from "./Header.js";
 import leagueoflegends_logo from "../resources/LeagueofLegends_logo.png";
 import valorant_logo from "../resources/Valorant_logo.png";
 import overwatch_logo from "../resources/Overwatch_logo.png";
+import portfolio_list from "../resources/PortfolioList.png";
+import user_portfolio from "../resources/UserPortfolio.png";
+import tournaments from "../resources/Tournaments.png";
 
 function LandingPage(props) {
     return (
@@ -30,17 +33,19 @@ function LandingPage(props) {
     return (
       <div className="games-box">
         <h3>SUPPORTED GAMES</h3>
-        <div className="game">
-          <img src={leagueoflegends_logo} className="game-logo" alt=""/>
-          <p>League of Legends</p>
-        </div>
-        <div className="game">
-          <img src={valorant_logo} className="game-logo" alt=""/>
-          <p>VALORANT</p>
-        </div>
-        <div className="game">
-          <img src={overwatch_logo} className="game-logo" alt=""/>
-          <p>Overwatch</p>
+        <div className="game-list-container">
+          <div className="game">
+            <img src={leagueoflegends_logo} className="game-logo" alt=""/>
+            <p>League of Legends</p>
+          </div>
+          <div className="game">
+            <img src={valorant_logo} className="game-logo" alt=""/>
+            <p>VALORANT</p>
+          </div>
+          <div className="game">
+            <img src={overwatch_logo} className="game-logo" alt=""/>
+            <p>Overwatch</p>
+          </div>
         </div>
         <p>...with many more on the way!</p>
       </div>
@@ -52,7 +57,7 @@ function LandingPage(props) {
       <div className="preview">
         <h3>FOR PROFESSIONAL & CASUAL GAMERS</h3>
         <div className="preview-box">
-          <div className="img-temp"></div>
+          <img className="preview-img" src={user_portfolio} alt="" />
           <div className="preview-box-list">
             <p>Showcase your skills through a personalized portfolio</p>
             <p>Find other gamers to scrim against and team up with, as well
@@ -62,7 +67,7 @@ function LandingPage(props) {
         </div>
         <h3>FOR TEAM MANAGERS</h3>
         <div className="preview-box">
-          <div className="img-temp"></div>
+          <img className="preview-img" src={portfolio_list} alt="" />
           <div className="preview-box-list">
             <p>Browse through a list of professional gamers open for
               recruitment</p>
@@ -72,7 +77,7 @@ function LandingPage(props) {
         </div>
         <h3>FOR ESPORTS FANS</h3>
         <div className="preview-box">
-          <div className="img-temp"></div>
+          <img className="preview-img" src={tournaments} alt="" />
           <div className="preview-box-list">
             <p>Stay up-to-date on the most recent eSports news</p>
             <p>Join or organize tournament watch parties with other eSports fans</p>
