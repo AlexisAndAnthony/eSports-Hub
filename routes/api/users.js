@@ -25,7 +25,8 @@ router.post('/auth', async (req, res) => {
         .then((ticket) => {
             const ticketPayload = ticket['payload'];
             // req.session.userId = null; // Keep track of user session
-            res.status(200).json({ msg: 'Authenticated successfully' });
+            console.log(ticketPayload);
+            res.status(200).json({ msg: 'Authenticated successfully', payload: ticketPayload });
         })
         .catch(console.error);
 });
@@ -52,9 +53,10 @@ router.get('/:id', (req, res) => {
 // @description add new user
 // @access Public
 router.post('/', (req, res) => {
+    console.log(req.body)
     User.create(req.body)
         .then(user => res.json({ msg: 'User added successfully' }))
-        .catch(err => res.status(400).json({ error: 'Unable to add user' }));
+        .catch(err => res.status(400).json({ error: 'Unable to add user' , info:err, db:err.code}));
 })
 
 // @route PUT api/users/:id

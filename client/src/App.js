@@ -23,7 +23,10 @@ function App() {
         <Route path="/signup">
           <SignUpPage 
             isSignedIn={isSignedIn}
-            updateLogin={(isSignedIn) => setIsSignedIn(isSignedIn)}
+            updateLogin={(isSignedIn) => {
+              console.log('inside update login');
+              setIsSignedIn(isSignedIn);}
+            }
           />
         </Route>
         <Route path="/setup">
