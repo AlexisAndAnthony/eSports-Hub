@@ -7,13 +7,19 @@
 
 .feed-display {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     background-color: #404547;
     height: 90vh;
     width: 90vw;
     margin-top: 20px;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
 }
 
 .new-post-display {
