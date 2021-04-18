@@ -58,6 +58,7 @@ function AccountSetUpPage(props) {
       stepComponents.splice(index, 0, <GameQuestions gameId={gameId}/>);
       index++;
     });
+    console.log(stepComponents);
   }
 
   var onButtonClick = () => {};
