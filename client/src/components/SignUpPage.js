@@ -6,9 +6,9 @@ import Header from './Header.js';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import * as account from '../requests/Account.js';
-// import * as data from '../config/default';
-// const OAuthClientID = data['OAuthClientID'];
-const OAuthClientID = '66986949536-80qb9i0l1kugi9lf9476eafih3hr3mpp.apps.googleusercontent.com';
+import * as data from '../config/default';
+const OAuthClientID = data['OAuthClientID'];
+
 function SignUpPage(props) {
   const [displayError, setDisplayError] = useState(false);
   const [redirect, setRedirect] = useState(false);
