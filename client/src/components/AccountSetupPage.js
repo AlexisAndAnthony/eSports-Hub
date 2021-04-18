@@ -10,7 +10,7 @@ function AccountSetUpPage(props) {
   const [allowContinue, setAllowContinue] = useState(false);
 
   const stepComponents = [
-    <TagChecklist handleCheckboxChange={updateTags} />,
+    <StartPage handleCheckboxChange={updateTags} />,
     <GamesChecklist handleCheckboxChange={updateGames} />
   ];
 
@@ -53,10 +53,10 @@ function AccountSetUpPage(props) {
   function finalizeGames() {
     console.log('Finalizing game selections...');
     setAllowContinue(false);
-    gameList.forEach((game) => {
-      stepComponents.push(
-        <GameQuestions />
-      );
+    var index = 2;
+    gameList.forEach((gameId) => {
+      stepComponents.splice(index, 0, <GameQuestions gameId={gameId}/>);
+      index++;
     });
   }
 
@@ -92,7 +92,7 @@ function AccountSetUpPage(props) {
 }
 
 function NextStep(props) {
-  const { stepNum, setStepNum, stepComponents } = props;
+  const { stepNum, stepComponents } = props;
 
   return (
     <div className="setup-container">
@@ -140,8 +140,20 @@ function FinishedScreen(props) {
 }
 
 function GameQuestions(props) {
+  const gameIdToName = {
+    0: 'League of Legends',
+    1: 'VALORANT',
+    2: 'Overwatch'
+  }
+
   return (
-    <React.Fragment />
+    <div>
+      <p>Time to answer some questions about your history with {gameIdToName[props.gameId]}.</p>
+      <p>Feel free to skip any you don't want to answer right now - you can always add or remove info later.</p>
+      <p>Enter your primary {gameIdToName[props.gameId]} account username.</p>
+      <p>What region is your primary account in?</p>
+      <p>What rank are you?</p>
+    </div>
   );
 }
 
@@ -169,9 +181,42 @@ function GamesChecklist(props) {
   );
 }
 
+function StartPage(props) {
+  const [displayName, setDisplayName] = useState("");
+  const [pfpURL, setPfpURL] = useState("");
+
+  return (
+    <div className="option-list">
+      <div className="input-group">
+        <p>Please enter a display name.</p>
+        <form>
+          <label>
+            <textarea 
+              value={displayName}
+              onChange={(event) => setDisplayName(event.target.value)} 
+            />
+          </label>
+        </form>
+      </div>
+      <div className="input-group">
+        <p>Please enter a profile picture URL.</p>
+        <form>
+          <label>
+            <textarea 
+              value={pfpURL}
+              onChange={(event) => setPfpURL(event.target.value)} 
+            />
+          </label>
+        </form>
+      </div>
+      <TagChecklist {...props} />
+    </div>
+  )
+}
+
 function TagChecklist(props) {
   return (
-    <div className="checkbox-list">
+    <div>
       <p>Please check which of the following options apply to you:</p>
       <Checkbox 
         label="I am a professional gamer open for recruitment"
