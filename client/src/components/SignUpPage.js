@@ -16,13 +16,12 @@ function SignUpPage(props) {
   const handleSuccess = async (googleData) => {
     console.log('Attempting authentication...');
 
-    let auth_res = await account.authenticate(googleData, props.updateLogin, setDisplayError);
-    
-    if (auth_res['status'] == 200){
-      console.log('Inserting data', auth_res['data']['payload']);
-      await account.createAccount(setRedirect, googleData.googleId, auth_res['data']['payload']['email']);
-    }
-
+    await account.authenticate(googleData, props.updateLogin, setDisplayError)
+      .then(async (auth_res) => {
+        console.log(auth_res);
+        console.log('Inserting data', auth_res['data']['payload']);
+        await account.createAccount(setRedirect, googleData.googleId, auth_res['data']['payload']['email']);
+      });
   }
 
   const handleFailure = () => {

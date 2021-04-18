@@ -58,14 +58,16 @@ function FeedView(props) {
           <p>Sign In to make a post!</p>
         )}
       </div>
-      {Array.isArray(posts) && posts.map((post) => (
-        <Post 
-          profile_picture_url={post.profile_picture_url}
-          display_name={post.display_name}
-          text_content={post.text}
-          post_date={post.post_date}
-        />
-      ))}
+      <div className="post-list">
+        {Array.isArray(posts) && posts.map((post) => (
+          <Post 
+            profile_picture_url={post.profile_picture_url}
+            display_name={post.display_name}
+            text_content={post.text}
+            post_date={post.post_date}
+          />
+        ))}
+      </div>
     </React.Fragment>
   )
 }
@@ -73,8 +75,17 @@ function FeedView(props) {
 function TextInput() {
   const [value, setValue] = useState();
 
+  function onSubmit() {
+    makePost({
+      text: value,
+      image_url: null,
+      post_date: null,
+      poster_id: "12345" // placeholder
+    });
+  }
+
   return (
-    <form className="input-row">
+    <form className="input-row" onSubmit={onSubmit}>
       <label>
         <textarea 
           value={value}
@@ -84,6 +95,23 @@ function TextInput() {
       <input className="post-button" type="submit" value="Post"/>
     </form>
   );
+}
+
+// Create a post
+async function makePost(postInfo) {
+  console.log('Inserting post: ', postInfo);
+  return axios.post('http://localhost:8080/api/posts', {
+    text: postInfo.text,
+    // image_url: postInfo.image_url,
+    // post_date: postInfo.post_date,
+    poster_id: postInfo.poster_id
+  })
+    .then((res) => {
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 // Retrieve list of posts from API
@@ -96,23 +124,6 @@ async function getPosts() {
     .catch((error) => {
       console.log(error);
     });
-}
-
-function getMockPosts() {
-  return [
-    {
-      profile_picture_url: "",
-      display_name: "TestUser",
-      text_content: "This is my first post!",
-      post_date: "April 7 2021 8:45AM"
-    },
-    {
-      profile_picture_url: "../resources/DefaultProfilePic.png",
-      display_name: "TestUser",
-      text_content: "This is my second post!",
-      post_date: "April 7 2021 8:46AM"
-    }
-  ];
 }
 
 function Post(props) {
