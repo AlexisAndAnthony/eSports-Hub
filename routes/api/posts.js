@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
         .catch(err => res.status(400).json({ error: 'Unable to add post' }));
 })
 
-// @route DELETE api/users/:id
+// @route DELETE api/posts/:id
 router.delete('/:id', (req, res) => {
     Post.findByIdAndRemove(req.params.id, req.body)
         .then(post => res.json({ msg: 'Post deleted successfully' }))
