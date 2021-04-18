@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import LandingPage from './components/LandingPage.js';
 import SignUpPage from './components/SignUpPage.js';
+import AccountSetUpPage from './components/AccountSetupPage.js';
 import FeedPage from './components/FeedPage.js';
 import PortfolioPage from './components/PortfolioPage.js';
 import RecruitmentPage from './components/RecruitmentPage.js';
@@ -15,7 +16,6 @@ import TournamentPage from './components/TournamentPage.js';
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  console.log(isSignedIn);
 
   return (
     <Router>
@@ -24,6 +24,11 @@ function App() {
           <SignUpPage 
             isSignedIn={isSignedIn}
             updateLogin={(isSignedIn) => setIsSignedIn(isSignedIn)}
+          />
+        </Route>
+        <Route path="/setup">
+          <AccountSetUpPage
+            isSignedIn={isSignedIn}
           />
         </Route>
         <Route path="/feed">

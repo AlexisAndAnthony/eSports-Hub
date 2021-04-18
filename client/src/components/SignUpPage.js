@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import '../styles/SignIn.css';
 import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import Header from './Header.js';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
@@ -9,6 +10,7 @@ const OAuthClientID = data['OAuthClientID'];
 
 function SignUpPage(props) {
   const [displayError, setDisplayError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const handleSuccess = async (googleData) => {
     await axios.post('http://localhost:8080/api/users/auth', {
@@ -19,6 +21,7 @@ function SignUpPage(props) {
     .then(function (response) {
       props.updateLogin(true);
       setDisplayError(false);
+      setRedirect(true);
       console.log('Response: ' + response);
     })
     .catch(function (error) {
@@ -33,6 +36,7 @@ function SignUpPage(props) {
 
   return (
     <div className="App">
+      {redirect && <Redirect to="/setup" />}
       <Header isSignedIn={props.isSignedIn} />
       <div className="sign-in-box">
         <h3>New to eSports Hub?</h3>
