@@ -17,7 +17,7 @@ function SignUpPage(props) {
     console.log('Attempting authentication...');
 
     let auth_res = await account.authenticate(googleData, props.updateLogin, setDisplayError);
-    
+    console.log(googleData.googleId, auth_res.data.payload.email);
     if (auth_res['status'] == 200){
       console.log('Inserting data', auth_res['data']['payload']);
       await account.createAccount(setRedirect, googleData.googleId, auth_res['data']['payload']['email']);
@@ -43,6 +43,7 @@ function SignUpPage(props) {
               buttonText="Login with Google"
               onSuccess={handleSuccess}
               onFailure={handleFailure}
+              isSignedIn={true}
               cookiePolicy={'single_host_origin'}
             />
           }
