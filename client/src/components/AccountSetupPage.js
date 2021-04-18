@@ -28,7 +28,11 @@ function AccountSetUpPage(props) {
   }
 
   function finalizeGames() {
-    return;
+    gameList.forEach((game) => {
+      stepComponents.push(
+        <GameQuestions />
+      );
+    })
   }
 
   return (
@@ -40,6 +44,7 @@ function AccountSetUpPage(props) {
               stepComponents={stepComponents}
               stepNum={stepNum}
               setStepNum={setStepNum}
+              onGamesFinish={finalizeGames}
             />
           : <FinishedScreen />
         }
@@ -59,14 +64,26 @@ function NextStep(props) {
 
         <div className="button-list">
           {(stepNum < stepComponents.length - 1) && 
-            <button onClick={() => setStepNum(stepNum + 1)}>Next</button>}
+            <ContinueButton label="Next" {...props} />}
           {(stepNum === stepComponents.length - 1) && 
             <button onClick={() => setStepNum(stepNum + 1)}>Finish</button>}
           {(stepNum < stepComponents.length) && 
-            <button onClick={() => setStepNum(stepNum + 1)}>Skip</button>}
+            <ContinueButton label="Skip" {...props} />}
         </div>
     </div>
   );
+}
+
+function ContinueButton(props) {
+  return (
+    <button 
+      onClick={() => {
+        props.setStepNum(props.stepNum + 1);
+      }}
+    >
+      {props.label}
+    </button>
+  )
 }
 
 function FinishedScreen(props) {
