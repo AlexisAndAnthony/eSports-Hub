@@ -1,11 +1,19 @@
+.feed-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .feed-display {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
     background-color: #404547;
     height: 90vh;
     width: 90vw;
+    margin-top: 20px;
 }
 
 .new-post-display {

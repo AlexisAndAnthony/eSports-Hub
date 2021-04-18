@@ -25,7 +25,7 @@ router.post('/auth', async (req, res) => {
         .then((ticket) => {
             const ticketPayload = ticket['payload'];
             // req.session.userId = null; // Keep track of user session
-            console.log(ticketPayload);
+            console.log('Payload: ', ticketPayload);
             res.status(200).json({ msg: 'Authenticated successfully', payload: ticketPayload });
         })
         .catch(console.error);
