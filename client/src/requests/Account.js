@@ -1,18 +1,15 @@
 import axios from 'axios';
 
-export async function authenticate(googleData, updateLogin, setDisplayError, isSignedIn) {
+export async function authenticate(googleData, updateLogin, setDisplayError) {
     let res = await axios.post('http://localhost:8080/api/users/auth', {
         data: {
             token: googleData.tokenId
         }
         })
         .then(function (response) {
+            console.log('Response: ' , response);
             updateLogin(true);
             setDisplayError(false);
-            setRedirect(true);
-            console.log('Response: ' , response);
-            // ticket = response['data']['payload'];
-            // console.log('email: ' + ticket['email'])
             return response;
         })
         .catch(function (error, response) {
@@ -27,7 +24,7 @@ export async function authenticate(googleData, updateLogin, setDisplayError, isS
 
 }
 
-export async function createAccount(id, email) {
+export async function createAccount(setRedirect, id, email) {
     console.log('inserting...', id, email);
     let res = await axios.post('http://localhost:8080/api/users', 
         {
@@ -37,6 +34,7 @@ export async function createAccount(id, email) {
         )
         .then(function (response) {
             console.log('Response: ' , response);
+            setRedirect(true);
             return response;
         })
         .catch(function (error, response) {
