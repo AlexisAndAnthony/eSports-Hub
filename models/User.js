@@ -58,7 +58,7 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
     tags: {
-        type: String
+        type: [String]
     },
     profile_picture_url: {
         type: String,

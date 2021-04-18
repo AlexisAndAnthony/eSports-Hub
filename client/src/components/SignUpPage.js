@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from './Header.js';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
+import * as account from '../requests/Account.js';
 import * as data from '../config/default';
 const OAuthClientID = data['OAuthClientID'];
 
@@ -11,20 +12,24 @@ function SignUpPage(props) {
   const [displayError, setDisplayError] = useState(false);
 
   const handleSuccess = async (googleData) => {
-    await axios.post('http://localhost:8080/api/users/auth', {
-      data: {
-        token: googleData.tokenId
-      }
-    })
-    .then(function (response) {
-      props.updateLogin(true);
-      setDisplayError(false);
-      console.log('Response: ' + response);
-    })
-    .catch(function (error) {
-      setDisplayError(true);
-      console.log('Error: ' + error);
-    });
+    console.log('Attempting authentication...');
+
+    let auth_res = await account.authenticate(googleData, props.updateLogin, setDisplayError, props.isSignedIn);
+    
+    if (auth_res['status'] == 200){
+      console.log('Inserting data', auth_res['data']['payload']);
+      await account.createAccount(googleData.googleId, auth_res['data']['payload']['email']);
+    }
+
+      // .then((res) => {
+      //   console.log('Inserting data', res);
+      //   account.createAccount(googleData.googleId, res['email']);
+      //   }
+      // )
+      // .catch((error) => {
+      //   console.log('Error using ticket from authentication' , error);
+      //   }
+      // );
   }
 
   const handleFailure = () => {
